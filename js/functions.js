@@ -22,7 +22,7 @@ const imgGrabber = async (item) =>{
 
     function setAttributes(element ,attributes) {
         Object.keys(attributes).forEach(attr => {
-    element.setAttribute(attr,attributes[attr]);
+            element.setAttribute(attr,attributes[attr]);
         });
     }
 
@@ -41,10 +41,44 @@ const imgGrabber = async (item) =>{
     lblElement.appendChild(btnElement);
     divElement.appendChild(lblElement)
     imgContainer.appendChild(divElement);
+    
+    btnElement.addEventListener("click", (e) => {
+        var targetImg = document.getElementById(e.target.id);
+        targetImg.previousElementSibling.classList.add("clicked")
+        targetImg.parentElement.parentElement.classList.add("clicked")
+        const updatedWidth = window.innerWidth;
+        const updatedHeight = window.innerHeight;
+        console.log(`Updated browser width: ${updatedWidth}px`);
+        console.log(`Updated browser height: ${updatedHeight}px`);
+
+        targetImg.previousSibling.style = `width: ${(updatedWidth - 400)}px ; height: ${updatedHeight - 200}px; top: -100px;`;  
+
+        console.log(targetImg.parentElement.parentElement);
+        // targetImg.parentElement.parentElement.style.position="absolute"
+        // targetImg.parentElement.parentElement.style.zIndex="10"
+
+        
+        
+    }
+    )
 }
 
- 
-for(let i = 0; i < 5; i++){
-    imgGrabber(i); 
-}
+
+    const fetchImages = async () => {
+        const promises = [];
+        for (let i = 0; i < 4; i++) {
+          promises.push(imgGrabber(i));
+        }
+        await Promise.all(promises);
+      };
+      
+      fetchImages();
+
+
+
+
+
+
+
+
 
