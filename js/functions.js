@@ -44,23 +44,33 @@ const imgGrabber = async (item) =>{
     
     btnElement.addEventListener("click", (e) => {
         var targetImg = document.getElementById(e.target.id);
-        targetImg.previousElementSibling.classList.add("clicked")
-        targetImg.parentElement.parentElement.classList.add("clicked")
-        const updatedWidth = window.innerWidth;
-        const updatedHeight = window.innerHeight;
-        console.log(`Updated browser width: ${updatedWidth}px`);
-        console.log(`Updated browser height: ${updatedHeight}px`);
-
-        targetImg.previousSibling.style = `width: ${(updatedWidth - 400)}px ; height: ${updatedHeight - 200}px; top: -100px;`;  
-
-        console.log(targetImg.parentElement.parentElement);
-        // targetImg.parentElement.parentElement.style.position="absolute"
-        // targetImg.parentElement.parentElement.style.zIndex="10"
-
+        classListArr = targetImg.previousElementSibling.classList.contains("clicked");
+        console.log(classListArr);
+        if(!classListArr){
+            targetImg.previousElementSibling.classList.add("clicked")
+            targetImg.parentElement.parentElement.classList.add("clicked")
+    
+            const updatedWidth = window.innerWidth;
+            const updatedHeight = window.innerHeight;
+    
+            console.log(`Updated browser width: ${updatedWidth}px`);
+            console.log(`Updated browser height: ${updatedHeight}px`);
+    
+            targetImg.previousSibling.style = `
+                width: ${(updatedWidth - 400)}px; 
+                height: ${updatedHeight - 200}px; top: -100px;`;  
+    
+            console.log(targetImg.parentElement.parentElement);
+        }else if(classListArr){
+            targetImg.previousElementSibling.classList.remove("clicked")
+            targetImg.parentElement.parentElement.classList.remove("clicked")
+            targetImg.previousSibling.style.width= null;
+            targetImg.previousSibling.style.height= null;
+            targetImg.previousSibling.style.top= 0;
+        }
         
-        
-    }
-    )
+    })
+
 }
 
 
