@@ -67,8 +67,7 @@ body {
 
 .disabled {
     pointer-events: none;
-    /* background-color: #131313;
-    opacity: 0.3; */
+
     position: fixed;
   }
 /***************************************/ /***************************************/
@@ -81,7 +80,7 @@ body {
   justify-content: center;
   align-items: center;
   align-content: center;
-  gap: 1vmin;
+  gap: 3vmin;
   position: relative;
   flex-wrap: wrap;
   flex-direction: row;
@@ -118,9 +117,8 @@ body {
 }
 
 .img-btn {
-
   visibility: hidden;
-  position: relative;
+  position: absolute !important;
   pointer-events:auto;
 }
 
@@ -144,6 +142,10 @@ body {
 
 .mini-img-wrapper {
   top: -3rem;
+}
+
+.inner-btn{
+    position: absolute;
 }
 
 /***************************************/ /***************************************/
